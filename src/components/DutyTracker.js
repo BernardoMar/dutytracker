@@ -37,7 +37,7 @@ class DutyTracker extends Component {
         <Tasks selectedTask={this.fetchTask} user={this.state.user}/>
         <ViewTask selectedTask={selectedTask}/>
         <Dashboard onChange={this.fetchUser}/>
-        <TaskDashboard />
+
       </div>
     )
   };

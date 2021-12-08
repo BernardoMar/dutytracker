@@ -12,6 +12,8 @@
 .tasks {
   list-style: none;
   padding-left: 0;
+  width: 300px;
+  display: inline-block;
 }
 
 .tasks li {

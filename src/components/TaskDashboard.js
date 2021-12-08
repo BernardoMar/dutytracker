@@ -1,28 +1,27 @@
 import React, {useState, useEffect} from 'react';
+import '../css/TaskDashboard.css';
 import {db} from "../firebase";
-import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import '../css/tasks.css';
 import {Link} from 'react-router-dom';
-
+import Draggable from "react-draggable";
+import Header from './Header'
+import Important from "./Important";
+import Urgent from "./Urgent";
+import NotImportant from "./NotImportant";
+import UrgAndImpor from "./UrgAndImpor";
 
 function TaskDashboard (props) {
 
   const [tasks,setTasks]=useState([''])
 
+  const [addItem, setAddItem] = useState(false);
+  const handleSubmit = () => {
+    setAddItem(!addItem);
+  };
+  const addTask = (task) => { //OJO QUE ESTE LLAMA A SET TASKS TAMBIEN
+    setTasks(task);
+  };
 
 
-
-  function handleOnDragEnd(result) {
-     if (!result.destination) return;
-     const items = Array.from(tasks);
-     const [reorderedItem] = items.splice(result.source.index, 1);
-     items.splice(result.destination.index, 0, reorderedItem);
-
-     setTasks(items);
-   }
 
 
 
@@ -51,36 +50,26 @@ function TaskDashboard (props) {
   return (
     <div>
       <h1>LIST OF TASKS</h1>
+
       <Link to="/dutytracker">
         <button>BACK TO APP</button>
       </Link>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-         <Droppable droppableId="tasks">
-             {(provided) => (
-               <ul className="tasks" {...provided.droppableProps} ref={provided.innerRef}>
-                 {
-                   tasks.map(({taskName, id, taskColor }, index) => {
-                     return(
-                       <Draggable key={id} draggableId={id} index={index}>
-                         {(provided) => (
+      <Header />
+      <div className='mainGrid'>
+        <div className='column'>
+          <UrgAndImpor tasks={tasks} addTask={addTask} />
+        </div>
+        <div className='column'>
+          <Urgent tasks={tasks} addTask={addTask} />
+        </div>
+        <div className='column'>
+          <Important tasks={tasks} addTask={addTask} />
+        </div>
+        <div className='column'>
+          <NotImportant tasks={tasks} addTask={addTask} />
+        </div>
 
-                             <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}  >
-                               <p style={{backgroundColor: `${taskColor}`,width: "100%"}}
-                                 onClick={()=> props.selectedTask(id)}>
-                                 {taskName}
-                               </p>
-                             </li>
-
-                         )}
-                       </Draggable>
-                     );
-                   })
-                 }
-               {provided.placeholder}
-               </ul>
-             )}
-         </Droppable>
-       </DragDropContext>
+      </div>
 
     </div>
   );

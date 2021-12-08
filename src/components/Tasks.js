@@ -61,33 +61,34 @@ function Tasks(props) {
   return (
     <div>
       <h1>LIST OF TASKS</h1>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-         <Droppable droppableId="tasks">
-             {(provided) => (
-               <ul className="tasks" {...provided.droppableProps} ref={provided.innerRef}>
-                 {
-                   tasks.map(({taskName, id, taskColor }, index) => {
-                     return(
-                       <Draggable key={id} draggableId={id} index={index}>
-                         {(provided) => (
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Done</th>
+            <th>Task Name</th>
+            <th>Due Date</th>
+            <th>Category</th>
+            <th>Priority</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+        { tasks.map((task)=>
+            <tr onClick={()=> props.selectedTask(task.id)}>
 
-                             <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}  >
-                               <p style={{backgroundColor: `${taskColor}`,width: "100%"}}
-                                 onClick={()=> props.selectedTask(id)}>
-                                 {taskName}
-                               </p>
-                             </li>
+                  <td>
+                    <Form.Check type="checkbox"/>
+                  </td>
+                  <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskName}</td>
+                  <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskDate}</td>
+                  <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskCategory}</td>
+                  <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskPriority}</td>
 
-                         )}
-                       </Draggable>
-                     );
-                   })
-                 }
-               {provided.placeholder}
-               </ul>
-             )}
-         </Droppable>
-       </DragDropContext>
+            </tr>
+          )}
+
+        </tbody>
+      </Table>
     </div>
   );
 }
