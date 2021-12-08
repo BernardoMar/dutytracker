@@ -7,6 +7,8 @@ import Register from './components/Register';
 import LogIn from './components/LogIn';
 import Reset from './components/Reset';
 import Dashboard from './components/Dashboard';
+import TaskDashboard from './components/TaskDashboard';
+
 
 
 import reportWebVitals from './reportWebVitals';
@@ -20,6 +22,8 @@ ReactDOM.render(
       <Route exact path="/register" component={Register}/>
       <Route exact path="/reset" component={Reset}/>
       <Route exact path="/dashboard" component={Dashboard}/>
+      <Route exact path="/board" component={TaskDashboard}/>
+
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

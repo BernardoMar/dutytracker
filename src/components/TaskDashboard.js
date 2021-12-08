@@ -5,22 +5,15 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import '../css/tasks.css';
+import {Link} from 'react-router-dom';
 
 
-function Tasks(props) {
+function TaskDashboard (props) {
 
   const [tasks,setTasks]=useState([''])
 
 
-  useEffect(() => {
 
-    db.collection("tasks").onSnapshot(snapshot => (
-      setTasks(snapshot.docs.map(doc => doc.data()))
-
-    ))
-
-
-  });
 
   function handleOnDragEnd(result) {
      if (!result.destination) return;
@@ -35,32 +28,32 @@ function Tasks(props) {
 
 
   ////////////////////////////////////////////////////////////////////
-  // const FetchTask = async () => {
-  //   const arrayOfTasks = [];
-  //   db.collection("tasks").get().then((querySnapshot) => {
-  //         querySnapshot.forEach((doc) => {
-  //           arrayOfTasks.push(doc.data())
-  //         })
-  //         setTasks(arrayOfTasks);
-  //       })
-  //   .catch( (err) => {
-  //     console.error(err);
-  //       alert("An error occured while fetching tasks data");
-  //     });
-  // };
-  // useEffect(() => {
-  //   FetchTask();
-  // }, [])
+  const FetchTask = async () => {
+    const arrayOfTasks = [];
+    db.collection("tasks").get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            arrayOfTasks.push(doc.data())
+          })
+          setTasks(arrayOfTasks);
+        })
+    .catch( (err) => {
+      console.error(err);
+        alert("An error occured while fetching tasks data");
+      });
+  };
+  useEffect(() => {
+    FetchTask();
+  }, [])
 ////////////////////////////////////////////////////////////////////
 
-
-
-  //
 
 
   return (
     <div>
       <h1>LIST OF TASKS</h1>
+      <Link to="/dutytracker">
+        <button>BACK TO APP</button>
+      </Link>
       <DragDropContext onDragEnd={handleOnDragEnd}>
          <Droppable droppableId="tasks">
              {(provided) => (
@@ -88,8 +81,10 @@ function Tasks(props) {
              )}
          </Droppable>
        </DragDropContext>
+
     </div>
   );
 }
 
-export default Tasks;
+
+export default TaskDashboard;

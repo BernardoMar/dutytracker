@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { v4 as uuidv4 } from "uuid";
 // import "firebase/auth";
 
 
@@ -76,7 +77,8 @@ const addTask = async (user, name, date, category, priority, color, address, not
     taskColor: color,
     taskAddress: address,
     taskNotes: notes,
-    user: user
+    user: user,
+    id: uuidv4(),
   };
   // let currentUser;
   // function filterUsers () {
@@ -96,7 +98,8 @@ const addTask = async (user, name, date, category, priority, color, address, not
   //   // db.collection("users").forEach((u) =>{
   //   //   console.log(u);
   //     // if (u.uid === user) {
-        db.collection("tasks").doc(data.taskName).set(data)
+        db.collection("tasks").doc(data.id).set(data)
+        alert('Task Created!');
 
   //     // }
   // //   })
@@ -123,9 +126,10 @@ const showTask = async () => {
       };
 ///////////////////////////////////////////////
 
-const updateTask = async (user, originalName, name, date, category, priority, color, address, notes) => {
+const updateTask = async (user, id, originalName, date, category, priority, color, address, notes) => {
   let data = {
-    taskName: name,
+    id: id,
+    taskName: originalName,
     taskDate: date,
     taskCategory: category,
     taskPriority: priority,
@@ -134,16 +138,17 @@ const updateTask = async (user, originalName, name, date, category, priority, co
     taskNotes: notes,
     user: user
   };
-  db.collection("tasks").doc(originalName).delete().then(()=>{
-  db.collection("tasks").doc(data.taskName).set(data)
-});;
-console.log('The Task has been updated');
+  db.collection("tasks").doc(data.id).set(data).then(()=>{
+
+
+  alert('The Task has been updated');
+  });
 };
 ///////////////////////////////////////////////
 
 const deleteTask = async (t) => {
   db.collection("tasks").doc(t).delete().then(()=>{
-    console.log("Task has been deleted succesfully, you can go to sleep now");
+    alert("Task has been deleted succesfully, you can go to sleep now");
   })
 };
 

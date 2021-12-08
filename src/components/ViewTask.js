@@ -1,86 +1,88 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import { Col, Row, Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 import {showTask} from "../firebase";
-import {updateTask} from "../firebase";
+import {updateTask, db, deleteTask} from "../firebase";
 
 
 class ViewTask extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      // taskName: "name",
-      // taskDate: null,
-      // taskCategory: "category",
-      // taskPriority: "priority",
-      // taskColor: "color",
-      // taskAddress:"address",
-      // taskNotes:"notes",
+      currentTask: this.props.selectedTask,
+
     };
     this._handleChange = this._handleChange.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleDelete = this._handleDelete.bind(this);
 
   }
+//   componentDidUpdate(prevProps) {
+//   if(prevProps.value !== this.props.selectedTask) {
+//     this.setState({currentTask: this.props.selectedTask});
+//   }
+// }
 
 
   componentDidMount() {
-    const fetchTasks = () => {
-      showTask().then((response) => {
-        // console.log('componen did mount response', response);
-        // console.log('and also the props', this.props.selectedTask);
-        let name = '';
-        const filteredTasks = response.filter((task) => {
-          if(task.taskName == this.props.selectedTask) {
-            return task;
+    const FetchTask = async () => {
+      let currentTask;
+      if (this.props.selectedTask.length>0){
+          currentTask = this.props.selectedTask
+          let arrayOfTasks = [];
+          db.collection("tasks").where("id", "==", `${currentTask}`).get().then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                arrayOfTasks.push(doc.data())
+              })
 
-            }
-          })
-
-          this.setState({task: filteredTasks[0]});
-          if (filteredTasks.length>0){
-            this.setState({taskName: filteredTasks[0].taskName,
-                            taskDate: filteredTasks[0].taskDate,
-                            taskCategory: filteredTasks[0].taskCategory,
-                            taskPriority: filteredTasks[0].taskPriority,
-                            taskColor: filteredTasks[0].taskColor,
-                            taskAddress:filteredTasks[0].taskAddress,
-                            taskNotes:filteredTasks[0].taskNotes,})
-          }
-
-
-          // console.log(filteredTasks[0]);
-
-      })
-        setTimeout(fetchTasks, 6000);
+              console.log('did it work?', arrayOfTasks);
+              this.setState({task: arrayOfTasks[0]});
+              if (arrayOfTasks.length>0){
+                this.setState({taskName: arrayOfTasks[0].taskName,
+                            originalName: arrayOfTasks[0].taskDate,
+                            taskDate: arrayOfTasks[0].taskDate,
+                            id: arrayOfTasks[0].id,
+                            taskCategory: arrayOfTasks[0].taskCategory,
+                            taskPriority: arrayOfTasks[0].taskPriority,
+                            taskColor: arrayOfTasks[0].taskColor,
+                            taskAddress:arrayOfTasks[0].taskAddress,
+                            user:arrayOfTasks[0].user,
+                            taskNotes:arrayOfTasks[0].taskNotes,})
+              }
+            })
+            .catch( (err) => {
+                console.error(err);
+                alert("An error occured while fetching tasks data");
+              });
+        }
       };
-      fetchTasks();
-      // const setStates = () => {
-      //   fetchTasks().then((response)=> {
-      //     console.log('this is the setState.response', response);
-      //   })
-      // };
-
+    FetchTask();
     };
 
   _handleChange(event) {
   const key = event.target.name;
   this.setState({[key]: event.target.value});
 };
+  _handleDelete(event) {
+  event.preventDefault();
+  deleteTask(this.state.id);
+};
+
 
 _handleSubmit(event){
   event.preventDefault();
-  const originalName = this.state.task.taskName;
-  const name = this.props.selectedTask;
+  const name = this.state.taskName;
+  const id = this.state.id;
   const date = this.state.taskDate;
   const category = this.state.taskCategory;
   const priority = this.state.taskPriority;
   const color = this.state.taskColor;
   const address = this.state.taskAddress;
   const notes = this.state.taskNotes;
-  const user = this.props.user;
+  const user = this.state.user;
   // console.log('the original name is', originalName);
-  updateTask(user, originalName, name, date, category, priority, color,
+  updateTask(user, id, name, date, category, priority, color,
   address, notes);
   this.setState({
     task: "",
@@ -97,6 +99,7 @@ _handleSubmit(event){
 
 
   render() {
+
 
     return (
       <div>
@@ -188,6 +191,9 @@ _handleSubmit(event){
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit
+          </Button>
+          <Button variant="danger" onClick={this._handleDelete}>
+            Delete
           </Button>
         </Form>
       </div>

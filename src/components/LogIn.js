@@ -15,7 +15,7 @@ function LogIn() {
     if (loading) {
       return;
     }
-    if (user) history.replace("/dashboard"); //CHECK DASHBOARD COMPONENT
+    if (user) history.replace("/dutytracker"); //CHECK DASHBOARD COMPONENT
   }, [user, loading]);
   return (
     <div className="login">

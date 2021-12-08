@@ -56,6 +56,7 @@ _handleSubmit(event){
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Name</Form.Label>
             <Form.Control
+              required
               type="text"
               placeholder="Task Name"
               name="taskName"
@@ -65,6 +66,7 @@ _handleSubmit(event){
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Date</Form.Label>
             <Form.Control
+              required
               type="date"
               name="taskDate"
               onChange={this._handleChange}
@@ -74,6 +76,7 @@ _handleSubmit(event){
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Category</Form.Label>
             <Form.Control
+              required
               type="text"
               placeholder="House Tasks"
               name="taskCategory"
@@ -84,6 +87,7 @@ _handleSubmit(event){
             <Row>
              <Col>
                <Form.Select
+                required
                 aria-label="Default select example"
                 name="taskPriority"
                 onChange={this._handleChange}
@@ -97,6 +101,7 @@ _handleSubmit(event){
              </Col>
              <Col>
                 <Form.Control
+                  required
                   type="color"
                   id="exampleColorInput"
                   defaultValue="#563d7c"
@@ -113,6 +118,7 @@ _handleSubmit(event){
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Address</Form.Label>
             <Form.Control
+              required
               type="text"
               placeholder="999 Princess Street"
               name="taskAddress"
@@ -122,6 +128,7 @@ _handleSubmit(event){
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Notes</Form.Label>
             <Form.Control
+              required
               type="text"
               placeholder="Call gardener"
               name="taskNotes"
