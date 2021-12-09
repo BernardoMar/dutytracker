@@ -50,7 +50,7 @@
 }
 .card{
   border: 1px solid black;
-  opacity:80%;
+  opacity:80%!important;
   padding: 4px;
 
 }
