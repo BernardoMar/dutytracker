@@ -4,6 +4,9 @@ import Card from "./Card";
 export default function NotImportant({ tasks, addTask }) {
   return (
     <>
+      <div className='header'>
+          <p>Not Important</p>
+      </div>
       {tasks
         .filter((item) => item.taskPriority === "notImport")
         .map((e) => (

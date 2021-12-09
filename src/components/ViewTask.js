@@ -16,49 +16,82 @@ class ViewTask extends Component {
     this._handleChange = this._handleChange.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleDelete = this._handleDelete.bind(this);
-
+    this._handleDone = this._handleDone.bind(this);
   }
-//   componentDidUpdate(prevProps) {
-//   if(prevProps.value !== this.props.selectedTask) {
-//     this.setState({currentTask: this.props.selectedTask});
-//   }
-// }
 
 
-  componentDidMount() {
-    const FetchTask = async () => {
-      let currentTask;
-      if (this.props.selectedTask.length>0){
-          currentTask = this.props.selectedTask
-          let arrayOfTasks = [];
-          db.collection("tasks").where("id", "==", `${currentTask}`).get().then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                arrayOfTasks.push(doc.data())
-              })
+  componentDidUpdate(prevProps) {
+    let newProp = false;
+    if(prevProps.selectedTask !== this.props.selectedTask) {
+      newProp=true;
+      this.setState({currentTask: this.props.selectedTask});
+      if (newProp) {
+        this.setState({
+          taskName: this.state.currentTask.taskName,
+          taskDate: this.state.currentTask.taskDate,
+          id: this.state.currentTask.id,
+          taskCategory:  this.state.currentTask.taskCategory,
+          taskPriority:  this.state.currentTask.taskPriority,
+          taskColor: this.state.currentTask.taskColor,
+          taskAddress: this.state.currentTask.taskAddress,
+          user: this.state.currentTask.user,
+          taskNotes: this.state.currentTask.taskNotes,
+        })
+        newProp=false;
+      }
+    // if(this.state.currentTask !== this.props.selectedTask){
+    //   this.setState({
+    //               taskName: this.state.currentTask.taskName,
+    //               taskDate: this.state.currentTask.taskDate,
+    //               id: this.state.currentTask.id,
+    //               taskCategory:  this.state.currentTask.taskCategory,
+    //               taskPriority:  this.state.currentTask.taskPriority,
+    //               taskColor: this.state.currentTask.taskColor,
+    //               taskAddress: this.state.currentTask.taskAddress,
+    //               user: this.state.currentTask.user,
+    //               taskNotes: this.state.currentTask.taskNotes,
+    //             })
+    //           }
+            }
+          }
 
-              console.log('did it work?', arrayOfTasks);
-              this.setState({task: arrayOfTasks[0]});
-              if (arrayOfTasks.length>0){
-                this.setState({taskName: arrayOfTasks[0].taskName,
-                            originalName: arrayOfTasks[0].taskDate,
-                            taskDate: arrayOfTasks[0].taskDate,
-                            id: arrayOfTasks[0].id,
-                            taskCategory: arrayOfTasks[0].taskCategory,
-                            taskPriority: arrayOfTasks[0].taskPriority,
-                            taskColor: arrayOfTasks[0].taskColor,
-                            taskAddress:arrayOfTasks[0].taskAddress,
-                            user:arrayOfTasks[0].user,
-                            taskNotes:arrayOfTasks[0].taskNotes,})
-              }
-            })
-            .catch( (err) => {
-                console.error(err);
-                alert("An error occured while fetching tasks data");
-              });
-        }
-      };
-    FetchTask();
-    };
+
+
+  //
+  // componentDidMount() {
+  //   const FetchTask = async () => {
+  //     let currentTask;
+  //     if (this.props.selectedTask.length>0){
+  //         currentTask = this.props.selectedTask
+  //         let arrayOfTasks = [];
+  //         db.collection("tasks").where("id", "==", `${currentTask}`).get().then((querySnapshot) => {
+  //             querySnapshot.forEach((doc) => {
+  //               arrayOfTasks.push(doc.data())
+  //             })
+  //
+  //             console.log('did it work?', arrayOfTasks);
+  //             this.setState({task: arrayOfTasks[0]});
+  //             if (arrayOfTasks.length>0){
+  //               this.setState({taskName: arrayOfTasks[0].taskName,
+  //                           originalName: arrayOfTasks[0].taskDate,
+  //                           taskDate: arrayOfTasks[0].taskDate,
+  //                           id: arrayOfTasks[0].id,
+  //                           taskCategory: arrayOfTasks[0].taskCategory,
+  //                           taskPriority: arrayOfTasks[0].taskPriority,
+  //                           taskColor: arrayOfTasks[0].taskColor,
+  //                           taskAddress:arrayOfTasks[0].taskAddress,
+  //                           user:arrayOfTasks[0].user,
+  //                           taskNotes:arrayOfTasks[0].taskNotes,})
+  //             }
+  // //           })
+  //           .catch( (err) => {
+  //               console.error(err);
+  //               alert("An error occured while fetching tasks data");
+  //             });
+  //       }
+  //     };
+  //   FetchTask();
+  //   };
 
   _handleChange(event) {
   const key = event.target.name;
@@ -68,6 +101,34 @@ class ViewTask extends Component {
   event.preventDefault();
   deleteTask(this.state.id);
 };
+  _handleDone(event) {
+  event.preventDefault();
+  const name = this.state.taskName;
+  const id = this.state.id;
+  const date = this.state.taskDate;
+  const category = this.state.taskCategory;
+  const priority = '✅';
+  const color = '#8C9A9E';
+  const address = this.state.taskAddress;
+  const notes = this.state.taskNotes;
+  const user = this.state.user;
+  // console.log('the original name is', originalName);
+  updateTask(user, id, name, date, category, priority, color,
+  address, notes);
+  this.setState({
+    task: "",
+    taskName: "",
+    taskDate: "",
+    taskCategory: "",
+    taskPriority: "",
+    taskColor: "",
+    taskAddress:"",
+    taskNotes:""});
+};
+
+
+
+
 
 
 _handleSubmit(event){
@@ -192,9 +253,13 @@ _handleSubmit(event){
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          <Button variant="secondary" onClick={this._handleDone}>
+            Mark Done
+          </Button>
           <Button variant="danger" onClick={this._handleDelete}>
             Delete
           </Button>
+
         </Form>
       </div>
     )

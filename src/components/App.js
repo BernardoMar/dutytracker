@@ -8,6 +8,7 @@ import DutyTracker from './DutyTracker.js'
 function App() {
   return (
     <div className="App">
+
       <DutyTracker/>
 
     </div>

@@ -95,7 +95,6 @@ _handleSubmit(event){
                  <option>Priority</option>
                  <option value="urgent">Urgent</option>
                  <option value="important">Important</option>
-                 <option value="urg&import">Urgent & Important</option>
                  <option value="notImport">Not Important</option>
                </Form.Select>
              </Col>

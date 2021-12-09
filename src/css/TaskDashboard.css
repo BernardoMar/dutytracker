@@ -35,26 +35,14 @@
   justify-content: space-between;
 
 }
-.addButton{
-  position:absolute;
-  top: 2.5%;
-  left: 0%;
+.detailsWrapper {
+  display: inline-block;
+  flex-wrap: wrap;
+  /* flex-direction: row; */
+  /* justify-content: space-around;
+  /* flex-wrap: wrap; */
 }
-.addForm{
-  height: 50vh;
-  width: 50vw;
-  background-color: lightblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: absolute;
-  top: 25%;
-  left: 25%;
-}
-.addForm form{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+
+.lilColums {
+  width: 45%;
 }

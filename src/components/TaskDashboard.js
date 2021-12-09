@@ -54,11 +54,7 @@ function TaskDashboard (props) {
       <Link to="/dutytracker">
         <button>BACK TO APP</button>
       </Link>
-      <Header />
       <div className='mainGrid'>
-        <div className='column'>
-          <UrgAndImpor tasks={tasks} addTask={addTask} />
-        </div>
         <div className='column'>
           <Urgent tasks={tasks} addTask={addTask} />
         </div>
@@ -68,7 +64,9 @@ function TaskDashboard (props) {
         <div className='column'>
           <NotImportant tasks={tasks} addTask={addTask} />
         </div>
-
+        <div className='column'>
+          <UrgAndImpor tasks={tasks} addTask={addTask} />
+        </div>
       </div>
 
     </div>
