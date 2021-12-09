@@ -4,8 +4,7 @@ import Tasks from './Tasks.js'
 import CreateTask from './CreateTask.js'
 import Dashboard from './Dashboard.js'
 import ViewTask from './ViewTask.js'
-import {Link} from 'react-router-dom'
-import TaskDashboard from './TaskDashboard.js';
+
 
 class DutyTracker extends Component {
   constructor() {
@@ -30,9 +29,6 @@ class DutyTracker extends Component {
     const {selectedTask} = this.state
     return (
       <div>
-        <Link to="/board">
-          <button> Check all tasks </button>
-        </Link>
         <CreateTask user={this.state.user}/>
         <Tasks selectedTask={this.fetchTask} user={this.state.user}/>
         <ViewTask selectedTask={selectedTask}/>

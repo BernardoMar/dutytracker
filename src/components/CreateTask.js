@@ -3,6 +3,9 @@ import { Col, Row, Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 import {addTask} from "../firebase";
+import '../css/CreateTasks.css'
+import {Link} from 'react-router-dom'
+import TaskDashboard from './TaskDashboard.js';
 
 
 class CreateTasks extends Component {
@@ -51,10 +54,10 @@ _handleSubmit(event){
 
   render() {
     return (
-      <div>
+      <div className="CreateTasksContainer">
         <Form onSubmit={this._handleSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Name</Form.Label>
+            <Form.Label className="formText">Name</Form.Label>
             <Form.Control
               required
               type="text"
@@ -63,26 +66,28 @@ _handleSubmit(event){
               onChange={this._handleChange}
               value={this.state.taskName} />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Date</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              name="taskDate"
-              onChange={this._handleChange}
-              value={this.state.taskDate}
-               />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Category</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="House Tasks"
-              name="taskCategory"
-              onChange={this._handleChange}
-              value={this.state.taskCategory} />
-          </Form.Group>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Label className="formText">Date</Form.Label>
+                <Form.Control
+                  required
+                  type="date"
+                  name="taskDate"
+                  onChange={this._handleChange}
+                  value={this.state.taskDate}
+                   />
+              </Form.Group>
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label className="formText">Category</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="House Tasks"
+                  name="taskCategory"
+                  onChange={this._handleChange}
+                  value={this.state.taskCategory} />
+              </Form.Group>
+            </Row>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Row>
              <Col>
@@ -92,7 +97,6 @@ _handleSubmit(event){
                 name="taskPriority"
                 onChange={this._handleChange}
                 value={this.state.taskPriority}>
-                 <option>Priority</option>
                  <option value="urgent">Urgent</option>
                  <option value="important">Important</option>
                  <option value="notImport">Not Important</option>
@@ -115,7 +119,7 @@ _handleSubmit(event){
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Address</Form.Label>
+            <Form.Label className="formText">Address</Form.Label>
             <Form.Control
               required
               type="text"
@@ -125,7 +129,7 @@ _handleSubmit(event){
               value={this.state.taskAddress} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Notes</Form.Label>
+            <Form.Label className="formText">Notes</Form.Label>
             <Form.Control
               required
               type="text"
@@ -134,9 +138,14 @@ _handleSubmit(event){
               onChange={this._handleChange}
               value={this.state.taskNotes} />
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <div className="inline-boxxx">
+            <button className="btn-blue">
+              Create Task
+            </button>
+            <Link to="/board">
+              <button className="btn-lime"> Check all tasks </button>
+            </Link>
+          </div>
         </Form>
       </div>
     )

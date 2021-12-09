@@ -21,16 +21,16 @@ function Tasks(props) {
 
 
   return (
-    <div>
-      <h1>LIST OF TASKS</h1>
-      <Table striped bordered hover>
+    <div className="listWrapper">
+
+      <Table className="table" striped bordered hover>
         <thead>
           <tr>
 
-            <th>Task Name</th>
-            <th>Due Date</th>
-            <th>Category</th>
-            <th>Priority</th>
+            <th className="tableHeaders">Task Name</th>
+            <th className="tableHeaders">Due Date</th>
+            <th className="tableHeaders">Category</th>
+            <th className="tableHeaders">Priority</th>
 
           </tr>
         </thead>
