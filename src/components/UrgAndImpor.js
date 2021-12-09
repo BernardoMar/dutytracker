@@ -1,11 +1,12 @@
 import React from "react";
 import Card from "./Card";
+import "../css/done.css";
 
 export default function UrgAndImpor ({ tasks, addTask }) {
   return (
     <>
       <div className='header'>
-          <p>Done</p>
+          <p className="headerText">Done</p>
       </div>
       {tasks
         .filter((item) => item.taskPriority === "✅")

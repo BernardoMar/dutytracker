@@ -29,11 +29,13 @@ class DutyTracker extends Component {
     const {selectedTask} = this.state
     return (
       <div>
+        <div className="pageHeader" style={{backgroundImage: "url(../images/bike.jpeg)"}} >
+          <h1>MOHAKA</h1>
+        </div>
         <CreateTask user={this.state.user}/>
         <Tasks selectedTask={this.fetchTask} user={this.state.user}/>
         <ViewTask selectedTask={selectedTask}/>
         <Dashboard onChange={this.fetchUser}/>
-
       </div>
     )
   };

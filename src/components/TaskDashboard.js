@@ -48,12 +48,12 @@ function TaskDashboard (props) {
 
 
   return (
-    <div>
-      <h1>LIST OF TASKS</h1>
-
-      <Link to="/dutytracker">
-        <button>BACK TO APP</button>
-      </Link>
+    <div className='dashboardWrapper'>
+      <div className="dashboardHeader">
+        <Link to="/dutytracker">
+          <button className="btn-blue">BACK TO APP</button>
+        </Link>
+      </div>
       <div className='mainGrid'>
         <div className='column'>
           <Urgent tasks={tasks} addTask={addTask} />

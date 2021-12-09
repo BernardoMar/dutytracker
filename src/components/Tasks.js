@@ -40,9 +40,9 @@ function Tasks(props) {
 
 
                   <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskName}</td>
-                  <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskDate}</td>
-                  <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskCategory}</td>
-                  <td style={{backgroundColor: `${task.taskColor}`}}>{task.taskPriority}</td>
+                  <td className="centerText" style={{backgroundColor: `${task.taskColor}`}}>{task.taskDate}</td>
+                  <td className="centerText" style={{backgroundColor: `${task.taskColor}`}}>{task.taskCategory}</td>
+                  <td className="centerText" style={{backgroundColor: `${task.taskColor}`}}>{task.taskPriority}</td>
 
             </tr>
           )}

@@ -32,10 +32,10 @@ function Dashboard(props) {
   return (
     <div className="dashboard">
       <div className="dashboard__container">
-        Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
-        <button className="dashboard__btn" onClick={logout}>
+
+        <div>Ready to leave, {name}? <br/> See you next time!</div>
+
+        <button className="btn-red" onClick={logout}>
           Logout
         </button>
       </div>

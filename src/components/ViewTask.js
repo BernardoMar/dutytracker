@@ -165,7 +165,7 @@ _handleSubmit(event){
 
     return (
       <div className="ViewTasksContainer">
-        <h2 className="formText">THIS IS THE SHOWPAGE</h2>
+        <h4 className="formText">Click on your tasks to edit them</h4>
         <Form
           onSubmit={this._handleSubmit}
           >

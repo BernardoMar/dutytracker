@@ -1,11 +1,12 @@
 import React from "react";
 import Card from "./Card";
+import "../css/Important.css";
 
 export default function Important({ tasks, addTask }) {
   return (
     <>
       <div className='header'>
-          <p>Important</p>
+          <p className="headerText">Important</p>
       </div>
       {tasks
         .filter((item) => item.taskPriority === "important")

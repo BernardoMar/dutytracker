@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+.dashboardWrapper{
+  max-width: 95%;
+  padding: 4px ;
+  margin: 0 auto;
+  text-align: left;
+  background-image: url('https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80');
+  background-size: cover;
+
+}
+
 .mainGrid{
   display: flex;
   flex-direction: row;
@@ -10,23 +22,43 @@
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-  background-color: rgb(205, 240, 240)
+  background-color: rgba(255,255,255, 0.6);
+  height: 60px;
+  margin-bottom: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+
 }
+
+.headerText {
+  line-height: 60px;
+}
+
+.dashboardHeader{
+  margin-bottom: 7px;
+}
+
 .column{
   width: 23vw;
   display: flex;
   flex-direction: column;
-  border: 5px solid grey;
-  background-color: azure;
+  border: 1px solid grey;
+  background-color: rgba(0, 0, 0, 0.7);
   overflow: hidden;
+  font-family: 'Josefin Sans', sans-serif;
 }
 .card{
   border: 1px solid black;
-  background-color: white;
+  opacity:80%;
+  padding: 4px;
+
 }
 .card p{
   font-size: 10px;
   width: 30vw;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px;
 }
 .heading{
   display: flex;
@@ -34,6 +66,12 @@
   align-items: center;
   justify-content: space-between;
 
+
+}
+h3 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
 }
 .detailsWrapper {
   display: inline-block;

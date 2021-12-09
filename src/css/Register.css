@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 .register {
   height: 100vh;
@@ -6,12 +6,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
 }
 .register__container {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #dcdcdc;
+  background-image: url("https://images.unsplash.com/photo-1579546928686-286c9fbde1ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=678&q=80");
+  background-size: cover;
   padding: 30px;
 }
 .register__textBox {

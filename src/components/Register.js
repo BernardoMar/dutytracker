@@ -46,8 +46,10 @@ function Register() {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-        <button className="register__btn" onClick={register}>Register</button>
-        <button className="register__btn register__google" onClick={signInWithGoogle}>Register with Google</button>
+        <div className="inline-box">
+          <button className="btn-blue" onClick={register}>Register</button>
+          {/* <button className="register__btn register__google" onClick={signInWithGoogle}>Register with Google</button> */}
+        </div>
         <div>
           Already have an account? <Link to="/">Login</Link> now.
         </div>

@@ -1,14 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
 .listWrapper {
   margin: 30px auto;
+  font-family: 'Josefin Sans', sans-serif;
+
 }
 
 
 .table {
-  background-color: #F4F1DE;
+  background-color: #586F6B;
 }
 
 
 .tableHeaders {
-  color: black;
+  color: white;
   text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.centerText {
+  text-align: center;
+}
+
+h4 {
+  margin-bottom: 10px;
 }

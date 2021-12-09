@@ -33,14 +33,16 @@ function LogIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"/>
-        <button
-          className="login__btn"
-          onClick={() => signInWithEmailAndPassword(email, password)}>
-          Login
-        </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button>
+          <div className="inline-box">
+            <button
+              className="btn-blue"
+              onClick={() => signInWithEmailAndPassword(email, password)}>
+              Login
+            </button>
+            {/* <button className="btn-blue" onClick={signInWithGoogle}>
+              Login with Google
+            </button> */}
+          </div>
         <div>
           Don't have an accout? <Link to="/register">Register</Link> now.
         </div>

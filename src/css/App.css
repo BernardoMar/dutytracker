@@ -1,12 +1,30 @@
-
-
+@import url('https://fonts.googleapis.com/css2?family=Unna&display=swap');
 
 .App{
   max-width: 960px;
   padding: 10px 80px;
   margin: 0 auto;
   text-align: left;
-  background-color: #DFBBB1 ;
+  background-color: #FFFFEB ;
+}
+
+.pageHeader {
+
+  height: 200px;
+  width: 960px;
+  background-size: cover;
+  margin: 40px -80px;
+  padding-left: 43px;
+
+}
+
+
+.pageHeader h1{
+  line-height: 200px;
+  font-family: 'Unna', serif;
+  font-size: 65px;
+  font-weight: 600;
+
 }
 
 .box{
