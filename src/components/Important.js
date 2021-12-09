@@ -9,7 +9,7 @@ export default function Important({ tasks, addTask }) {
           <p className="headerText">Important</p>
       </div>
       {tasks
-        .filter((item) => item.taskPriority === "important")
+        .filter((item) => item.taskPriority === "Important")
         .map((e) => (
           <Card currentTask={e} tasks={tasks} addTask={addTask} />
         ))}

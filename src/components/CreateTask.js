@@ -97,9 +97,9 @@ _handleSubmit(event){
                 name="taskPriority"
                 onChange={this._handleChange}
                 value={this.state.taskPriority}>
-                 <option value="urgent">Urgent</option>
-                 <option value="important">Important</option>
-                 <option value="notImport">Not Important</option>
+                 <option value="Urgent">Urgent</option>
+                 <option value="Important">Important</option>
+                 <option value="Not Important">Not Important</option>
                </Form.Select>
              </Col>
              <Col>

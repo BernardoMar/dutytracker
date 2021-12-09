@@ -9,7 +9,7 @@ export default function Urgent({ tasks, addTask }) {
           <p className="headerText">Urgent</p>
       </div>
       {tasks
-        .filter((item) => item.taskPriority === "urgent")
+        .filter((item) => item.taskPriority === "Urgent")
         .map((e) => (
           <Card currentTask={e} tasks={tasks} addTask={addTask} />
         ))}
